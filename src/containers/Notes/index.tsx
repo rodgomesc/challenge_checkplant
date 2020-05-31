@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Keyboard } from 'react-native';
-
+import SucessfulyModal from '../../components/modals/SucessfulyModal';
 import { useDispatch } from 'react-redux';
 import { newAnnotation } from '../../store/modules/book/actions';
 
@@ -32,6 +32,7 @@ import {
 const Notes: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>();
   const dispatch = useDispatch();
+  const modalRef = useRef(null);
 
   const handleSubmit = () => {
     let annotationObj = {
@@ -41,11 +42,13 @@ const Notes: React.FC = () => {
       datetime: new Date(),
     };
     dispatch(newAnnotation(annotationObj));
-
+    modalRef.current.open();
     setInputValue('');
   };
   return (
     <Container>
+      <SucessfulyModal ref={modalRef} />
+
       <AvatarWrapper>
         <AvatarImage source={avatar} />
         <AvatarContent>

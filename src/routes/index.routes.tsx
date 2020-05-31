@@ -12,6 +12,7 @@ function Routes() {
     <Stack.Navigator
       initialRouteName="Notes"
       screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: '#54CFAF',
         },

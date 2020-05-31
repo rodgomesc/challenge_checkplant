@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-
+import { Platform } from 'react-native';
 export const Container = styled.View`
   margin: 20px 20px 0;
   flex: 1;
@@ -79,7 +79,7 @@ export const Lon = styled.Text`
 export const SaveButton = styled.TouchableOpacity`
   background: #54cfaf;
   margin-top: auto;
-  margin-bottom: 70px;
+  margin-bottom: ${Platform.select({ android: '15px', ios: '70px' })};
   height: 54px;
   border-radius: 26px;
 `;
