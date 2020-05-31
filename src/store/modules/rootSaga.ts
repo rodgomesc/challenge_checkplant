@@ -1,7 +1,7 @@
 import { all, AllEffect } from 'redux-saga/effects';
 
-import auth from './auth/sagas';
+import book from './book/sagas';
 
 export default function* rootSaga(): Generator<AllEffect<any>> {
-  return yield all([auth]);
+  return yield all([book]);
 }
