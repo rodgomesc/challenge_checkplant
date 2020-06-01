@@ -71,7 +71,6 @@ const Notes: React.FC = () => {
           <Lat>Lat:123</Lat>
           <Lon>Lot:123</Lon>
         </MapHeaderWrapper>
-
         <Map />
       </MapWrapper>
       <SaveButton onPress={() => handleSubmit()}>

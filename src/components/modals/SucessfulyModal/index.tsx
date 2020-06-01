@@ -13,14 +13,6 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 const SucessfulyModal = forwardRef((props, ref) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const open = () => {
-    set;
-  };
-
-  const close = () => {
-    console.log('close modal');
-  };
-
   useImperativeHandle(ref, () => ({
     open: () => setIsModalVisible(true),
     close: () => setIsModalVisible(false),

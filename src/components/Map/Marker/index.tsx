@@ -1,19 +1,23 @@
 import React from 'react';
-import { View } from 'react-native';
-import mapDropAnimation from '../../../assets/animations/map-drop3.json';
-import LottieView from 'lottie-react-native';
-// import { Container } from './styles';
+import pinActive from '../../../assets/img/pin_active.png';
+import pinInactive from '../../../assets/img/pin_inactive.png';
 
-const Marker: React.FC = () => {
+import { Container, CustomMarker } from './styles';
+
+interface MarkerProps {
+  synced?: boolean;
+}
+
+const Marker: React.FC<MarkerProps> = ({ synced }) => {
   return (
-    <LottieView
-      style={{ height: 80, marginBottom: 10 }}
-      source={mapDropAnimation}
-      autoPlay
-      loop
-      speed={2}
-    />
+    <Container>
+      <CustomMarker source={synced ? pinInactive : pinActive} />
+    </Container>
   );
+};
+
+Marker.defaultProps = {
+  synced: false,
 };
 
 export default Marker;
