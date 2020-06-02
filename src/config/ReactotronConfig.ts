@@ -13,7 +13,7 @@ interface PluginConfig {
 }
 
 if (__DEV__) {
-  const tron = Reactotron.configure()
+  const tron = Reactotron.configure({ name: 'CheckPlant' })
     .useReactNative()
     .use(reactotronRedux())
     .use(sagaPlugin({ except: [''] }))

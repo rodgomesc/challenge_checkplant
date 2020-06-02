@@ -1,11 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Keyboard } from 'react-native';
+
+import * as handlers from '../../helpers/handlers';
+
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
 import SucessfulyModal from '../../components/modals/SucessfulyModal';
 import { useDispatch } from 'react-redux';
 import { newAnnotation } from '../../store/modules/book/actions';
 
 import avatar from '../../assets/img/avatar.jpeg';
 import Map from '../../components/Map';
+import geolocation from 'react-native-geolocation-service';
+
+import { useNavigation } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 Icon.loadFont();
@@ -31,20 +40,54 @@ import {
 
 const Notes: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>();
+  const [currentRegion, setCurrentRegion] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const modalRef = useRef(null);
 
+  useEffect(() => {
+    // when coord changes, set new current region
+    async function locationWatch() {
+      await handlers.requestLocationPermission();
+      await geolocation.watchPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setCurrentRegion({
+            latitude,
+            longitude,
+          });
+        },
+        (e) => console.log(e),
+        {
+          showLocationDialog: true,
+          enableHighAccuracy: true,
+          distanceFilter: 5,
+          interval: 3000,
+          useSignificantChanges: false,
+        },
+      );
+    }
+    locationWatch();
+  }, []);
+
   const handleSubmit = () => {
+    // when coord changes, set new current region
     let annotationObj = {
-      latitude: 4645645,
-      longitude: 88787,
-      annotation: inputValue,
+      id: uuidv4(),
+      latitude: currentRegion.latitude,
+      longitude: currentRegion.longitude,
+      content: inputValue,
       datetime: new Date(),
     };
+
     dispatch(newAnnotation(annotationObj));
-    modalRef.current.open();
-    setInputValue('');
+    navigation.navigate('Home');
+    //modalRef.current.open();
   };
+
   return (
     <Container>
       <SucessfulyModal ref={modalRef} />
@@ -68,8 +111,8 @@ const Notes: React.FC = () => {
       <MapWrapper>
         <MapHeaderWrapper>
           <Icon name="location-pin" size={28} color="#8B9DAB" />
-          <Lat>Lat:123</Lat>
-          <Lon>Lot:123</Lon>
+          <Lat>Lat:{currentRegion.latitude}</Lat>
+          <Lon>Lot:{currentRegion.longitude}</Lon>
         </MapHeaderWrapper>
         <Map />
       </MapWrapper>
