@@ -1,6 +1,6 @@
 {
   "name": "checkplant",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-released",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
