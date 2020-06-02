@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Keyboard, Alert } from 'react-native';
+import { Keyboard } from 'react-native';
 
 import { useDispatch } from 'react-redux';
 import { newAnnotation } from '../../store/modules/book/actions';
@@ -41,6 +41,8 @@ const Notes: React.FC = () => {
       datetime: new Date(),
     };
     dispatch(newAnnotation(annotationObj));
+
+    setInputValue('');
   };
   return (
     <Container>
