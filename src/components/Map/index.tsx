@@ -16,12 +16,14 @@ const Map: React.FC = () => {
           latitudeDelta: 0.0143,
           longitudeDelta: 0.0134,
         }}
-        //showsUserLocation
+        showsUserLocation
         loadingEnabled
       >
-        <Marker coordinate={{ latitude: -27.210753, longitude: -49.644183 }}>
+        {/**
+             <Marker coordinate={{ latitude: -27.210753, longitude: -49.644183 }}>
           <CustomMarker />
         </Marker>
+        */}
       </MapView>
     </View>
   );

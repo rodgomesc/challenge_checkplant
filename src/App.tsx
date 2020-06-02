@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import './config/ReactotronConfig';
 import 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
@@ -11,6 +12,7 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <StatusBar translucent backgroundColor="transparent" animated />
         <Routes />
       </NavigationContainer>
     </Provider>
