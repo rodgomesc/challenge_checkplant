@@ -27,6 +27,7 @@
     "@react-navigation/native": "^5.5.0",
     "@react-navigation/stack": "^5.4.1",
     "add": "^2.0.6",
+    "immer": "^6.0.9",
     "lottie-ios": "^3.1.8",
     "lottie-react-native": "^3.4.0",
     "react": "16.11.0",

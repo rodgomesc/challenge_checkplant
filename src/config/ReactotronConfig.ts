@@ -1,5 +1,5 @@
 import Reactotron from 'reactotron-react-native';
-import {reactotronRedux} from 'reactotron-redux';
+import { reactotronRedux } from 'reactotron-redux';
 import sagaPlugin from 'reactotron-redux-saga';
 
 declare global {
@@ -8,11 +8,15 @@ declare global {
   }
 }
 
+interface PluginConfig {
+  except?: string[];
+}
+
 if (__DEV__) {
   const tron = Reactotron.configure()
     .useReactNative()
     .use(reactotronRedux())
-    .use(sagaPlugin({}))
+    .use(sagaPlugin({ except: [''] }))
     .connect();
 
   tron.clear!();

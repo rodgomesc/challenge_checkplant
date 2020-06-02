@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Keyboard, Alert } from 'react-native';
+
 import { useDispatch } from 'react-redux';
+import { newAnnotation } from '../../store/modules/book/actions';
+
 import avatar from '../../assets/img/avatar.jpeg';
 import Map from '../../components/Map';
 
@@ -31,13 +34,13 @@ const Notes: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    let noteObj = {
+    let annotationObj = {
       latitude: 4645645,
       longitude: 88787,
       annotation: inputValue,
       datetime: new Date(),
     };
-    dispatch(newNotation(noteObj));
+    dispatch(newAnnotation(annotationObj));
   };
   return (
     <Container>
@@ -66,7 +69,7 @@ const Notes: React.FC = () => {
 
         <Map />
       </MapWrapper>
-      <SaveButton onPress={() => Alert.alert('', inputValue)}>
+      <SaveButton onPress={() => handleSubmit()}>
         <SaveButtonText>Salvar</SaveButtonText>
       </SaveButton>
     </Container>
