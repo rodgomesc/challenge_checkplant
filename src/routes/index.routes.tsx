@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Login from '../containers/Login';
 import Notes from '../containers/Notes';
 import Home from '../containers/Home';
+
 const Stack = createStackNavigator();
 
 function Routes() {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Login"
       screenOptions={{
         headerTitleAlign: 'center',
         headerStyle: {
@@ -20,11 +22,27 @@ function Routes() {
         },
       }}
     >
-      <Stack.Screen name="Home" options={{ title: 'HOME' }} component={Home} />
+      <Stack.Screen
+        name="Login"
+        options={{ title: 'Login', headerShown: false }}
+        component={Login}
+      />
+      <Stack.Screen
+        name="Home"
+        options={{
+          title: 'HOME',
+          headerLeft: () => {
+            return null;
+          },
+        }}
+        component={Home}
+      />
       <Stack.Screen
         name="Notes"
         component={Notes}
-        options={{ title: 'ANOTAÇÕES' }}
+        options={{
+          title: 'ANOTAÇÕES',
+        }}
       />
     </Stack.Navigator>
   );

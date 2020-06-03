@@ -33,7 +33,19 @@ const Home: React.FC = () => {
 
   const onApiRequest = async (index: number, note: any) => {
     setSyncProgress(((index + 1) / notSyncedAnnotations.length) * 100);
-    await delay(800); // simulate a api delay of 800ms for each request
+    await delay(500); // simulate a api delay of 800ms for each request (just to see batter a progressBar)
+    await api.post(
+      '/?email_key=rodgomesc@gmail.com',
+      {},
+      {
+        data: {
+          latitude: note.latitude,
+          longitude: note.longitude,
+          annotation: note.content,
+          datetime: note.datetime,
+        },
+      },
+    );
     syncedAnnotations.push(note.id);
   };
 
