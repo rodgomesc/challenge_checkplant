@@ -1,3 +1,4 @@
+import styled from 'styled-components/native';
 export const mapStyle = [
   {
     elementType: 'geometry',
@@ -158,3 +159,26 @@ export const mapStyle = [
     ],
   },
 ];
+
+export const CustomCallOutView = styled.View`
+  background: #fff;
+  border: 2px solid #54cfaf;
+  height: 160px;
+  width: 190px;
+  margin-bottom: 3px;
+  border-radius: 4px;
+  padding: 4px;
+`;
+
+export const AnnotationDate = styled.Text`
+  text-align: justify;
+  margin-bottom: 20px;
+`;
+
+export const SyncedStatus = styled.Text``;
+
+export const LatStatus = styled.Text``;
+
+export const LongStatus = styled.Text``;
+
+export const DateStatus = styled.Text``;

@@ -40,6 +40,7 @@ import {
 
 const Notes: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>();
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
   const [currentRegion, setCurrentRegion] = useState({
     latitude: 0,
     longitude: 0,
@@ -70,9 +71,26 @@ const Notes: React.FC = () => {
         },
       );
     }
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false);
+      },
+    );
+
     locationWatch();
 
-    return geolocation.stopObserving();
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+      geolocation.stopObserving();
+    };
   }, []);
 
   const handleSubmit = () => {
@@ -115,7 +133,7 @@ const Notes: React.FC = () => {
           <Lat>Lat:{currentRegion.latitude.toFixed(4)}</Lat>
           <Lon>Lot:{currentRegion.longitude.toFixed(4)}</Lon>
         </MapHeaderWrapper>
-        <Map />
+        {!keyboardVisible && <Map />}
       </MapWrapper>
       <SaveButton onPress={() => handleSubmit()}>
         <SaveButtonText>Salvar</SaveButtonText>
