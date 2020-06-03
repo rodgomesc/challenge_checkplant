@@ -4,3 +4,10 @@ export function newAnnotation(anotationObj: object) {
     payload: anotationObj,
   };
 }
+
+export function updateSyncedAnnotations(syncedAnnotations: []) {
+  return {
+    type: '@book/UPDATE_SYNCED_ANNOTATIONS',
+    payload: syncedAnnotations,
+  };
+}
