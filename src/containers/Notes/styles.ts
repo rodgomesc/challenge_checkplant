@@ -48,6 +48,7 @@ export const NotePlaceHolder = styled.Text`
 `;
 export const NoteInput = styled.TextInput.attrs({
   multiline: true,
+  textAlignVertical: 'top',
 })`
   background: #eefcf8;
   border: 1px solid #89ffe2;
@@ -58,7 +59,7 @@ export const NoteInput = styled.TextInput.attrs({
 `;
 export const MapWrapper = styled.View`
   flex: 1;
-  max-height: 300px;
+  height: 300px;
 `;
 
 export const MapHeaderWrapper = styled.View`

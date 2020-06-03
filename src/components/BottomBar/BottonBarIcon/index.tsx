@@ -2,14 +2,19 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Neomorph } from 'react-native-neomorph-shadows';
 
-import { Container } from './styles';
+import { Container, NumPopOver } from './styles';
 
 Icon.loadFont();
 interface BottonBarIconProps {
   name: string;
   onPress?: () => void;
+  numIndicator?: number | null;
 }
-const BottonBarIcon: React.FC<BottonBarIconProps> = ({ name, onPress }) => {
+const BottonBarIcon: React.FC<BottonBarIconProps> = ({
+  name,
+  onPress,
+  numIndicator,
+}) => {
   return (
     <Container onPress={onPress}>
       <Neomorph
@@ -25,6 +30,8 @@ const BottonBarIcon: React.FC<BottonBarIconProps> = ({ name, onPress }) => {
           height: 65,
         }}
       >
+        {!!numIndicator && <NumPopOver>{numIndicator}</NumPopOver>}
+
         <Icon
           style={{
             marginTop: 'auto',
@@ -41,4 +48,4 @@ const BottonBarIcon: React.FC<BottonBarIconProps> = ({ name, onPress }) => {
   );
 };
 
-export default BottonBarIcon;
+export default React.memo(BottonBarIcon);

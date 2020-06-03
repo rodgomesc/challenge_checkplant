@@ -1,6 +1,6 @@
 import { PermissionsAndroid } from 'react-native';
 
-export async function requestLocationPermission() {
+export const requestLocationPermission = async () => {
   try {
     await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -14,4 +14,9 @@ export async function requestLocationPermission() {
   } catch (err) {
     console.warn(err);
   }
-}
+};
+
+// return only unsynced annotations
+export const filterNotSyncedAnnotations = (book: any) => {
+  return book.annotations.filter((annotation: any) => !annotation.synced);
+};

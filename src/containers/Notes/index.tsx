@@ -71,6 +71,8 @@ const Notes: React.FC = () => {
       );
     }
     locationWatch();
+
+    return geolocation.stopObserving();
   }, []);
 
   const handleSubmit = () => {
@@ -111,8 +113,8 @@ const Notes: React.FC = () => {
       <MapWrapper>
         <MapHeaderWrapper>
           <Icon name="location-pin" size={28} color="#8B9DAB" />
-          <Lat>Lat:{currentRegion.latitude}</Lat>
-          <Lon>Lot:{currentRegion.longitude}</Lon>
+          <Lat>Lat:{currentRegion.latitude.toFixed(4)}</Lat>
+          <Lon>Lot:{currentRegion.longitude.toFixed(4)}</Lon>
         </MapHeaderWrapper>
         <Map />
       </MapWrapper>

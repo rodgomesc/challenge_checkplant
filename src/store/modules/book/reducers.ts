@@ -10,6 +10,14 @@ export default function book(state = INITIAL_STATE, action) {
       return produce(state, (draft: any) => {
         draft.annotations.push(action.payload);
       });
+    case '@book/UPDATE_SYNCED_ANNOTATIONS':
+      return produce(state, (draft: any) => {
+        draft.annotations = state.annotations.map((annotation) =>
+          action.payload.includes(annotation.id)
+            ? { ...annotation, synced: true }
+            : annotation,
+        );
+      });
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import geolocation from 'react-native-geolocation-service';
 import MapView, { Marker } from 'react-native-maps';
+import { View } from 'react-native';
 import CustomMarker from './Marker';
 import { mapStyle } from './styles';
 import * as handlers from '../../helpers/handlers';
@@ -19,7 +20,6 @@ const Map: React.FC = () => {
       await handlers.requestLocationPermission();
       await geolocation.watchPosition(
         (position) => {
-          console.log('OK');
           const { latitude, longitude } = position.coords;
           setCurrentRegion({
             latitude,
@@ -38,32 +38,34 @@ const Map: React.FC = () => {
     return geolocation.stopObserving();
   }, []);
   return (
-    <MapView
-      style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-      customMapStyle={mapStyle}
-      region={{
-        ...currentRegion,
-        latitudeDelta: 0.034,
-        longitudeDelta: 0.017,
-      }}
-      followsUserLocation
-      showsUserLocation
-      loadingEnabled
-    >
-      {annotations.map((note: any) => (
-        <Marker
-          key={note.id}
-          title={note.content}
-          coordinate={{
-            latitude: note.latitude,
-            longitude: note.longitude,
-          }}
-        >
-          <CustomMarker synced={note.synced} />
-        </Marker>
-      ))}
-    </MapView>
+    <View style={{ flex: 1 }}>
+      <MapView
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        customMapStyle={mapStyle}
+        region={{
+          ...currentRegion,
+          latitudeDelta: 0.034,
+          longitudeDelta: 0.017,
+        }}
+        followsUserLocation
+        showsUserLocation
+        loadingEnabled
+      >
+        {annotations.map((note: any) => (
+          <Marker
+            key={note.id}
+            title={note.content}
+            coordinate={{
+              latitude: note.latitude,
+              longitude: note.longitude,
+            }}
+          >
+            <CustomMarker synced={note.synced} />
+          </Marker>
+        ))}
+      </MapView>
+    </View>
   );
 };
 
-export default Map;
+export default React.memo(Map);
