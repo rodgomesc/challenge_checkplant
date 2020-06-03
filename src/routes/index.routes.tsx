@@ -14,13 +14,13 @@ function Routes() {
         headerStyle: {
           backgroundColor: '#54CFAF',
         },
-        headerTintColor: '#79FFDC',
+        headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" options={{ title: 'HOME' }} component={Home} />
       <Stack.Screen
         name="Notes"
         component={Notes}

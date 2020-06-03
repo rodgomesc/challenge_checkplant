@@ -13,7 +13,13 @@ import {
   ModalButtonText,
 } from './styles';
 
-const SucessfulyModal: React.FC = forwardRef(
+interface ModalNotFoundProps {
+  title: string;
+  subtitle: string;
+  ref?: any;
+}
+
+const ModalNotFound: React.FC<ModalNotFoundProps> = forwardRef(
   ({ title, subtitle }, ref): any => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -54,4 +60,4 @@ const SucessfulyModal: React.FC = forwardRef(
   },
 );
 
-export default SucessfulyModal;
+export default ModalNotFound;
