@@ -17,11 +17,16 @@ const BottomBar: React.FC<BottomBarProps> = ({
   return (
     <Container>
       <BottomBarIcon
+        title="Sincronizar"
         numIndicator={numIndicator}
         onPress={onCloudPress}
         name="cloud-sync"
       />
-      <BottomBarIcon name="book-multiple-plus" onPress={onNotePress} />
+      <BottomBarIcon
+        title="Nova Anotação"
+        name="book-multiple-plus"
+        onPress={onNotePress}
+      />
     </Container>
   );
 };
