@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 import Map from '../../components/Map';
@@ -8,6 +9,7 @@ import {
   ModalCircularProgress,
   ModalSucessfuly,
   ModalNotFound,
+  ModalOffline,
 } from '../../components/modals';
 
 import { filterNotSyncedAnnotations } from '../../helpers/handlers';
@@ -18,6 +20,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
   const notSyncedAnnotations = filterNotSyncedAnnotations(
     useSelector((state: any) => state.book),
   );
@@ -27,6 +30,7 @@ const Home: React.FC = () => {
   const modalProgressRef = useRef(null);
   const modalSucessfulyRef = useRef(null);
   const modalNotFoundRef = useRef(null);
+  const modalOfflineRef = useRef(null);
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms)); // simulate a api delay
 
   var syncedAnnotations: any = [];
@@ -57,10 +61,16 @@ const Home: React.FC = () => {
   };
 
   const handleCloudPress = async () => {
+    if (!netInfo.isConnected) {
+      modalOfflineRef.current.open();
+      return;
+    }
+
     if (!notSyncedAnnotations.length) {
       modalNotFoundRef.current.open();
       return;
     }
+
     modalProgressRef.current.open();
 
     for (const [idx, note] of notSyncedAnnotations.entries()) {
@@ -83,6 +93,12 @@ const Home: React.FC = () => {
         subtitle=" Parece que não existem anotações para sincronizar, experimente criar
             algumas e tente novamente!"
         ref={modalNotFoundRef}
+      />
+      <ModalOffline
+        title="Ops!"
+        subtitle="Não foi possivel Estabelecer uma conexão com a Internet!,
+         verifique se seu smartphone está conectado."
+        ref={modalOfflineRef}
       />
       <Map />
       <BottomBar
