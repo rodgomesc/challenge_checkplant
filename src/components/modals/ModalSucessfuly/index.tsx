@@ -7,15 +7,23 @@ import LottieView from 'lottie-react-native';
 import doneAnimation from '../../../assets/animations/done2';
 
 import Modal from 'react-native-modal';
-import { Container, ModalTitle } from './styles';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {
+  Container,
+  ModalTitle,
+  ModalContentText,
+  ModalButton,
+  ModalButtonText,
+} from './styles';
 
-const SucessfulyModal = forwardRef((props, ref) => {
+const ModalSucessfuly = forwardRef((props, ref) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const open = () => setIsModalVisible(true);
+  const close = () => setIsModalVisible(false);
+
   useImperativeHandle(ref, () => ({
-    open: () => setIsModalVisible(true),
-    close: () => setIsModalVisible(false),
+    open,
+    close,
   }));
 
   return (
@@ -34,7 +42,7 @@ const SucessfulyModal = forwardRef((props, ref) => {
             // borderWidth: 1,
             height: 200,
             position: 'absolute',
-            marginTop: Platform.select({ android: -10, ios: -10 }),
+            marginTop: Platform.select({ android: -25, ios: -10 }),
             marginLeft: Platform.select({ android: -26, ios: -16 }),
             transform: [{ rotate: '-7deg' }],
           }}
@@ -45,9 +53,15 @@ const SucessfulyModal = forwardRef((props, ref) => {
           speed={0.6}
         />
         <ModalTitle>Tudo Certo</ModalTitle>
+        <ModalContentText>
+          As Anotações foram sincronizadas com sucesso!
+        </ModalContentText>
+        <ModalButton onPress={() => close()}>
+          <ModalButtonText>Ok</ModalButtonText>
+        </ModalButton>
       </Container>
     </Modal>
   );
 });
 
-export default SucessfulyModal;
+export default ModalSucessfuly;

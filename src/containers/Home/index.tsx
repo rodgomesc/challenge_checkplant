@@ -4,7 +4,11 @@ import api from '../../services/api';
 import Map from '../../components/Map';
 
 import BottomBar from '../../components/BottomBar';
-import ModalCircularProgress from '../../components/modals/ModalCircularProgress';
+import {
+  ModalCircularProgress,
+  ModalSucessfuly,
+  ModalNotFound,
+} from '../../components/modals';
 
 import { filterNotSyncedAnnotations } from '../../helpers/handlers';
 
@@ -20,7 +24,9 @@ const Home: React.FC = () => {
 
   const dispath = useDispatch();
   const [syncProgress, setSyncProgress] = useState(0);
-  const modalRef = useRef(null);
+  const modalProgressRef = useRef(null);
+  const modalSucessfulyRef = useRef(null);
+  const modalNotFoundRef = useRef(null);
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms)); // simulate a api delay
 
   var syncedAnnotations: any = [];
@@ -33,12 +39,17 @@ const Home: React.FC = () => {
 
   const onRequestFinish = () => {
     dispath(updateSyncedAnnotations(syncedAnnotations));
-    modalRef.current.close();
+    modalProgressRef.current.close();
     setSyncProgress(0);
+    modalSucessfulyRef.current.open();
   };
 
   const handleCloudPress = async () => {
-    modalRef.current.open();
+    if (!notSyncedAnnotations.length) {
+      modalNotFoundRef.current.open();
+      return;
+    }
+    modalProgressRef.current.open();
 
     for (const [idx, note] of notSyncedAnnotations.entries()) {
       await onApiRequest(idx, note);
@@ -52,7 +63,14 @@ const Home: React.FC = () => {
       <ModalCircularProgress
         subtitle="Sincronização em Andamento..."
         fill={syncProgress}
-        ref={modalRef}
+        ref={modalProgressRef}
+      />
+      <ModalSucessfuly ref={modalSucessfulyRef} />
+      <ModalNotFound
+        title="Ops!"
+        subtitle=" Parece que não existem anotações para sincronizar, experimente criar
+            algumas e tente novamente!"
+        ref={modalNotFoundRef}
       />
       <Map />
       <BottomBar

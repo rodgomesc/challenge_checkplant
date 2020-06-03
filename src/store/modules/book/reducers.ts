@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   annotations: [],
 };
 
-export default function book(state = INITIAL_STATE, action) {
+export default function book(state = INITIAL_STATE, action: any) {
   switch (action.type) {
     case '@book/SET_NEW_ANNOTATION':
       return produce(state, (draft: any) => {
