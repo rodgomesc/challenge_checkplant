@@ -6,7 +6,7 @@ import * as handlers from '../../helpers/handlers';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
-import SucessfulyModal from '../../components/modals/SucessfulyModal';
+import SucessfulyModal from '../../components/modals/ModalSucessfuly';
 import { useDispatch } from 'react-redux';
 import { newAnnotation } from '../../store/modules/book/actions';
 
@@ -87,7 +87,6 @@ const Notes: React.FC = () => {
 
     dispatch(newAnnotation(annotationObj));
     navigation.navigate('Home');
-    //modalRef.current.open();
   };
 
   return (
