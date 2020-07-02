@@ -1,7 +1,9 @@
 import styled from 'styled-components/native';
 import { Platform } from 'react-native';
+
 export const Container = styled.View`
-  margin: 20px 20px 0;
+  padding: 20px 20px 0;
+  background: #ecf0f3;
   flex: 1;
 `;
 
@@ -56,7 +58,6 @@ export const NoteInput = styled.TextInput.attrs({
 `;
 export const MapWrapper = styled.View`
   flex: 1;
-
   max-height: 300px;
 `;
 
