@@ -20,4 +20,4 @@ Marker.defaultProps = {
   synced: false,
 };
 
-export default Marker;
+export default React.memo(Marker);
