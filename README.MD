@@ -1,15 +1,14 @@
 
 # CHALLENGE CHECKPLANT
 
-# Ferramentas e Recursos
+# Tolls and Resources
 
-> nota: foi feito um video testando app e enviado para o youtube, o video pode ser acessado [nesse link](https://youtu.be/X2LfaoEbJ40) OBS: o video não é listado **publicamente**
+> note: a video testing app was made and uploaded to youtube, the video can be accessed [in this link](https://youtu.be/X2LfaoEbJ40)
 
-> nota: o download do apk pode ser feito através deste [link](https://drive.google.com/file/d/1PfeG9pXX_nYEDK3FmXrlF5EVJIJedzg3/view?usp=sharing)
+> nota: note: the **APK** of the application can be downloaded [in this link](https://github.com/rodgomesc/challenge_checkplant/releases/tag/v1.2.0) 
 
 
-
-## Tecnologias Utilizadas
+## technologies used
 - javascript + typescript
 - React-Native
 - Styled Components
@@ -34,9 +33,9 @@
 
 ...
 
-## Da organização e estrutura de pastas
+## Organization and structure of folders
 
-> O código foi estrututurado de forma que toda aplicação seja totalmente reutilizável e escalável, a estrutura de pastas conforme abaixo:
+> The code was structured so that the application is fully reusable and scalable, the folder structure as follows:
 
 ```shell
 .
@@ -112,23 +111,23 @@
         └── rootSaga.ts
 ```
 
-## Passos para rodar a aplicação
+## steps to run the application
 
-> ### nota: o **APK** do aplicativo pode ser baixado [nesse link](https://drive.google.com/file/d/1PfeG9pXX_nYEDK3FmXrlF5EVJIJedzg3/view?usp=sharing) ou na raiz do arquivo zipado em anexo evitando a necessidade dos passos abaixo.
+> ### note: the **APK** of the application can be downloaded [in this link](https://github.com/rodgomesc/challenge_checkplant/releases/tag/v1.2.0) making it unnecessary to follow the steps below
 
-## Instalar as Dependencias e Executar
+## How to install dependencies and run the project
 
 ```shell
-# entre na pasta do projeto
+# goto project folder
 cd checkplant
 
-# instale as dependências
+# install the dependencies
 yarn install
 
-# inicie a aplicação no android
+# start the android application
 yarn android
 
-# inicie a aplicação no ios
+# or start the ios application (if you are on mac)
 yarn ios
 ```
 
@@ -146,5 +145,4 @@ yarn ios
 
 
 ## Feedback
-
-- aguardo feedback: 064 98414-7972
++55 64 98414-7972
