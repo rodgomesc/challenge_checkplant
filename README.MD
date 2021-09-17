@@ -1,5 +1,8 @@
 
 # CHALLENGE CHECKPLANT
+> this app as developed in a short period of time as a test for an employer that i worked in the past.
+
+> the test was done just to allow a user to create annotations and for each annotation create a marker on the map of the location where the user was at the moment, save notes locally even if you don't have internet, and allow sync with a backend when online.
 
 # Tolls and Resources
 
